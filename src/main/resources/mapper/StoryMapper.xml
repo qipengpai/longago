@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qpp.longago.basics.dao.StoryMapper">
+  <resultMap id="BaseResultMap" type="com.qpp.longago.basics.entity.Story">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="story_title" jdbcType="VARCHAR" property="storyTitle" />
+    <result column="story_main" jdbcType="VARCHAR" property="storyMain" />
+    <result column="story_pic" jdbcType="VARCHAR" property="storyPic" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="register_time" jdbcType="VARCHAR" property="registerTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="very_ok_count" jdbcType="INTEGER" property="veryOkCount" />
+    <result column="collection_count" jdbcType="INTEGER" property="collectionCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="story_secret_type" jdbcType="INTEGER" property="storySecretType" />
+    <result column="story_play_type" jdbcType="INTEGER" property="storyPlayType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, user_id, story_title, story_main, story_pic, state, register_time, update_time, 
+    very_ok_count, collection_count, comment_count, story_secret_type, story_play_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from story
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from story
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qpp.longago.basics.entity.Story">
+    insert into story (id, uuid, user_id, 
+      story_title, story_main, story_pic, 
+      state, register_time, update_time, 
+      very_ok_count, collection_count, comment_count, 
+      story_secret_type, story_play_type)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{storyTitle,jdbcType=VARCHAR}, #{storyMain,jdbcType=VARCHAR}, #{storyPic,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{registerTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{veryOkCount,jdbcType=INTEGER}, #{collectionCount,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, 
+      #{storySecretType,jdbcType=INTEGER}, #{storyPlayType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qpp.longago.basics.entity.Story">
+    insert into story
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="storyTitle != null">
+        story_title,
+      </if>
+      <if test="storyMain != null">
+        story_main,
+      </if>
+      <if test="storyPic != null">
+        story_pic,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="registerTime != null">
+        register_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="veryOkCount != null">
+        very_ok_count,
+      </if>
+      <if test="collectionCount != null">
+        collection_count,
+      </if>
+      <if test="commentCount != null">
+        comment_count,
+      </if>
+      <if test="storySecretType != null">
+        story_secret_type,
+      </if>
+      <if test="storyPlayType != null">
+        story_play_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="storyTitle != null">
+        #{storyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="storyMain != null">
+        #{storyMain,jdbcType=VARCHAR},
+      </if>
+      <if test="storyPic != null">
+        #{storyPic,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="registerTime != null">
+        #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="veryOkCount != null">
+        #{veryOkCount,jdbcType=INTEGER},
+      </if>
+      <if test="collectionCount != null">
+        #{collectionCount,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="storySecretType != null">
+        #{storySecretType,jdbcType=INTEGER},
+      </if>
+      <if test="storyPlayType != null">
+        #{storyPlayType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qpp.longago.basics.entity.Story">
+    update story
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="storyTitle != null">
+        story_title = #{storyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="storyMain != null">
+        story_main = #{storyMain,jdbcType=VARCHAR},
+      </if>
+      <if test="storyPic != null">
+        story_pic = #{storyPic,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="registerTime != null">
+        register_time = #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="veryOkCount != null">
+        very_ok_count = #{veryOkCount,jdbcType=INTEGER},
+      </if>
+      <if test="collectionCount != null">
+        collection_count = #{collectionCount,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        comment_count = #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="storySecretType != null">
+        story_secret_type = #{storySecretType,jdbcType=INTEGER},
+      </if>
+      <if test="storyPlayType != null">
+        story_play_type = #{storyPlayType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qpp.longago.basics.entity.Story">
+    update story
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      story_title = #{storyTitle,jdbcType=VARCHAR},
+      story_main = #{storyMain,jdbcType=VARCHAR},
+      story_pic = #{storyPic,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      register_time = #{registerTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      very_ok_count = #{veryOkCount,jdbcType=INTEGER},
+      collection_count = #{collectionCount,jdbcType=INTEGER},
+      comment_count = #{commentCount,jdbcType=INTEGER},
+      story_secret_type = #{storySecretType,jdbcType=INTEGER},
+      story_play_type = #{storyPlayType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
